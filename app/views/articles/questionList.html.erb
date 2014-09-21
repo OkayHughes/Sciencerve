@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<title>Question List Item</title>
+<body bgcolor=#D1C200 vlink=#000000>
+<center>
+                <input type="image" src="pic/orangeQ.png" name="statusImg" width="120" hight="120" value="Submit" align="center">
+
+  <%= form_for upload_file.php, url: articles_path do |f| %>
+		<p>
+		  <%= f.label :title %><br>
+		  <%= f.text_field :title %>
+		</p>	 
+		<p>
+		  <%= f.submit type="image" src="pic/submit.png"%>
+		</p>
+	<% end %>
+<br><br><br><br><br><br><br><br>
+<!--<form action="upload_file.php" target="output1" method="post" enctype="multipart/form-data" align="center">
+                <input type="file" name="file" id="file" align="center"><br>
+                <input type="image" src="pic/submit.png" name="submit" width="70" height="50" value="Submit" align="center">
+            </form> -->
+
+    <iframe name="output1" style="background-color:#EEEEEE;height:300px;width:70%;float:right" frameborder="0"></iframe>
+</body>
+</html>
