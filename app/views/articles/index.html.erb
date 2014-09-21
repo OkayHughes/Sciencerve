@@ -12,10 +12,10 @@
     <title>Albert</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <%= stylesheet_link_tag "scroll/bootstrap.min.cssmain" %>
 
     <!-- Custom CSS -->
-    <link href="css/scrolling-nav.css" rel="stylesheet">
+    <%= stylesheet_link_tag "scroll/scrolling-nav.css" %>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -54,15 +54,11 @@
                     <li class="hidden">
                         <a class="page-scroll" href="#page-top"></a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#p1">Problem One</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#p2">Problem Two</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#p3">Problem Three</a>
-                    </li>
+											<% @articles.each do |article| %>
+											  <li>
+                          <a class="page-scroll" href="#p<%= article.id %>"><%= article.title %></a>
+                    		</li>  
+											<% end %>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -78,70 +74,40 @@
                     <h1>Introduction</h1>
                     <p><strong>Rules:</strong> Print out a mulitplacation table using <code>system input/output</code>  and bla bla bla bla bla <code> code </code> bla bla bla bla.</p>
                     <a class="btn btn-default page-scroll" href="#p1">Next problem</a>
-                    <iframe src="questionList.html" name="program1" style="background-color:#00EE00;height:300px;width:100%;float:center" frameborder="0" scrolling="no"></iframe>
                 </div>
             </div>
         </div>
     </section>
-    <?php
 
-    include_once('MyView.php');
+<!-- this next line is a for loop -->
+  <% @articles.each do |article| %>
 
-    $t = new MyView();
-
-    $t->friends = array(
-    'challenge 1', 'your face', 'lolz', 'pineapples', 'do your homework', 'youlo'
-    );
-
-    $t->render('index.phtml');
-    $t->render('index.xml');
-
-
-    ?>
-
-    <!-- About Section -->
-    <section id="p1" class="about-section">
+    <section id=p<%= article.id %> class="about-section" style="background-color: #<%= "%06x" % (rand * 0x111111) %>" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Problem One</h1>
-
+                    <h1><%= article.title %></h1>
+											<!-- <iframe src="questionList.html" name="program1" style="background-color:#00EE00;height:300px;width:100%;float:center" frameborder="0" scrolling="no"></iframe> -->
+                      <%= article.text %><br>
+											<%= link_to 'Show', article_path(article) %> | 
+											<%= link_to 'Edit', edit_article_path(article) %> | 
+											<%= link_to 'Destroy', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %>
+										  <a class="btn btn-default page-scroll" href="#p<%= article.id %>">Next problem</a>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Services Section -->
-    <section id="p2" class="services-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>Problem Two</h1>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="p3" class="contact-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>Problem Three</h1>
-                </div>
-            </div>
-        </div>
-    </section>
+  <% end %>
 
     <!-- jQuery Version 1.11.0 -->
-    <script src="js/jquery-1.11.0.js"></script>
+    <%= javascript_include_tag "scroll/jquery-1.11.0.jsmain" %>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <%= javascript_include_tag "scroll/bootstrap.min.js">
 
     <!-- Scrolling Nav JavaScript -->
-    <script src="js/jquery.easing.min.js"></script>
-    <script src="js/scrolling-nav.js"></script>
+    <%= javascript_include_tag "scroll/jquery.easing.min.js"
+    <%= javascript_include_tag "scroll/scrolling-nav.js"
 
 </body>
 
