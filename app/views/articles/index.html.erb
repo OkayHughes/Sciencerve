@@ -42,6 +42,7 @@
 											<%= render partial: "question_list.html.erb", locals:{article: article}%>
                                             <div class="article-info">
                                             <%= article.text %><br>
+                                            <div id="result_<%= article.id%>"></div>
 											<%= link_to 'Show', article_path(article) %> | 
 											<%= link_to 'Edit', edit_article_path(article) %> | 
 											<%= link_to 'Destroy', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %>
