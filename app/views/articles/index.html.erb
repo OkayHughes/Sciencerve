@@ -41,12 +41,20 @@
 
 											<%= render partial: "question_list.html.erb", locals:{article: article}%>
                                             <div class="article-info">
+                                            <div class="info-heading"> Problem Specifications:</div>
                                             <%= article.text %><br>
-                                            <div id="result_<%= article.id%>"></div>
-											<%= link_to 'Show', article_path(article) %> | 
-											<%= link_to 'Edit', edit_article_path(article) %> | 
-											<%= link_to 'Destroy', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %>
                                             </div>
+                                            <div class="article-info" style="margin-left:100px;">
+                                            <div class="info-heading"> Results: </div>
+                                            <div id="result_<%= article.id%>" class="result">
+                                            No submission.
+                                            </div>
+                                            </div>
+				
+                                            </div>
+                                                                        <%= link_to 'Show', article_path(article) %> | 
+                                            <%= link_to 'Edit', edit_article_path(article) %> | 
+                                            <%= link_to 'Destroy', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %>
 										  <!-- <a class="btn btn-default page-scroll" href="#p<%= article.id %>">Next problem</a> -->
                     </div>
                 </div>

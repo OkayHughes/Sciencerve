@@ -24,16 +24,27 @@ h1.article-title{
 	background:#D1C2B2;
 	padding:15px;
 	margin-bottom:40px;
+	margin-top:0px;
 }
 .article-info{
 	display:inline-block;
-	margin:auto;
+	float:left;
+	margin-left:40px;
 }
 
 div.article{
 	background:#eedfcf;
 	padding-bottom:30px;
 	min-height:200px;
+	height:100%;
+	overflow:auto;
 
 }
 
+.result{
+	max-width:200px;
+}
+
+.info-heading{
+	font-size:20px;
+}
