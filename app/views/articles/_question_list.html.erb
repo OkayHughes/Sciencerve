@@ -1,0 +1,7 @@
+			<div class="post-form">
+            <%= form_tag({action: :upload}, html: {multipart: true}, remote: true) do %>
+                <%= file_field_tag 'script', style:"float:left" %><br>
+                <%= hidden_field_tag :article_id, article.id %>
+                <%= submit_tag 'Submit', style:"float:left;", class:"btn btn-default" %>
+            <% end %>
+            </div>

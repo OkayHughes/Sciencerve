@@ -1,83 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Albert</title>
-
-    <!-- Bootstrap Core CSS -->
-    <%= stylesheet_link_tag "scroll/bootstrap.min.cssmain" %>
-
-    <!-- Custom CSS -->
-    <%= stylesheet_link_tag "scroll/scrolling-nav.css" %>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
 
 <!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
-    <!-- Navigation -->
-    <img src=pic/pio.png height=100 width=100 style ="float:left; z-index:999; position: relative">
-
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="z-index:90">
-
-        <div class="container">
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Albert</a>
-
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a class="page-scroll" href="#page-top"></a>
-                    </li>
-											<% @articles.each do |article| %>
-											  <li>
-                          <a class="page-scroll" href="#p<%= article.id %>"><%= article.title %></a>
-                    		</li>  
-											<% end %>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
 
     <!-- Intro Section -->
     <section id="intro" class="intro-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Introduction</h1><h2> -- - A simple example so you can learn how to use this program - -- </h2>
-                    <p><strong>Rules:</strong> Print out a mulitplacation table using <code>system input/output</code> and bla bla bla bla bla <code> code </code> bla bla bla bla.</p>
-										<%= link_to 'New article', new_article_path %>
+                    <h1>Introduction</h1><h2>  A simple example so you can learn how to use this program  </h2>
+                    <p><strong>Rules:</strong> Print out a multiplication table using <code>system input/output</code> and bla bla bla bla bla <code> code </code>  bla bla bla bla.</p>
 
 
                     <a class="btn btn-default page-scroll" href="#p1">Next problem</a>
                 </div>
+            </div>
+            <h3> Posts: </h3>
+            <div id="post-links">
+            <% ct = 0 %>
+            <% @articles.each do |a| %>
+                <%= link_to a.title, "#p" + a.id.to_s, class:"post-link" %>
+                <% ct += 1 %>
+                <% if ct % 5 == 0 %>
+                    <br><br>
+                <% end %>
+            <% end %>
             </div>
         </div>
     </section>
@@ -85,33 +32,27 @@
 <!-- this next line is a for loop -->
   <% @articles.each do |article| %>
 
-    <section id=p<%= article.id %> class="about-section" style="background-color: #<%= "%06x" % (rand * 0x111111) %>" >
+    <section id="p<%= article.id %>" class="about-section article" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1><%= article.title %></h1>
-											<%= render "questionList.html.erb"%>
-                      <%= article.text %><br>
+                    <div class="article">
+                    <h1 class="article-title"><%= article.title %>:</h1>
+
+											<%= render partial: "question_list.html.erb", locals:{article: article}%>
+                                            <div class="article-info">
+                                            <%= article.text %><br>
 											<%= link_to 'Show', article_path(article) %> | 
 											<%= link_to 'Edit', edit_article_path(article) %> | 
 											<%= link_to 'Destroy', article_path(article), method: :delete, data: { confirm: 'Are you sure?' } %>
+                                            </div>
 										  <!-- <a class="btn btn-default page-scroll" href="#p<%= article.id %>">Next problem</a> -->
+                    </div>
                 </div>
             </div>
         </div>
     </section>
   <% end %>
 
-    <!-- jQuery Version 1.11.0 -->
-    <%= javascript_include_tag "scroll/jquery-1.11.0.jsmain" %>
 
-    <!-- Bootstrap Core JavaScript -->
-    <%= javascript_include_tag "scroll/bootstrap.min.js">
 
-    <!-- Scrolling Nav JavaScript -->
-    <%= javascript_include_tag "scroll/jquery.easing.min.js"
-    <%= javascript_include_tag "scroll/scrolling-nav.js"
-
-</body>
-
-</html>

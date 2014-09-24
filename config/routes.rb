@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   resources :articles do
      resources :comments
   end
+
+  match "/upload/.format", to: "articles#upload", via: "post"
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  root 'articles#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
